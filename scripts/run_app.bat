@@ -1,0 +1,1 @@
+streamlit run frontend\Generate_Querry.py

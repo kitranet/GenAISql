@@ -7,8 +7,10 @@ import pyodbc
 # from util import PostgresqlConnector, MSAccessConnector
 from util.connectors import PostgresqlConnector, MSAccessConnector
 from util.prompt import create_sql_querry_prompt
+import util.logging as ul
+import logging
+appLogger = logging.getLogger('frontend')
 st.session_state.update(st.session_state)
-
 # Configure OpenAI
 openai.api_type = "azure"
 openai.api_base = "https://generativetesing12.openai.azure.com/"
@@ -30,8 +32,10 @@ try:
     # Generate query
     if user_input and st.button("Generate SQL Query"):
         sqlquery_prompt = create_sql_querry_prompt(st.session_state['selected_profile'],user_input)
+        appLogger.info(f'sqlquery_prompt:{sqlquery_prompt}')
         if 'openai_key' not in st.session_state:
             st.error("OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar")
+            appLogger.error("OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar")
         else:
             openai.api_key=st.session_state.openai_key
             response = openai.Completion.create(
@@ -46,6 +50,7 @@ try:
                 stop=None
             )
             
+            appLogger.info(f'response:{response}')
             # Extract generated email from response
             generated_query = response.choices[0].text.strip()
             st.write("Generated SQL Query")
@@ -58,10 +63,12 @@ try:
                         st.write("Querry Results:")
                         st.dataframe(df)
                     except pyodbc.Error as e:
+                        appLogger.exception(e)
                         import traceback
                         st.write(f"Error executing SQL query: {traceback.format_exc(chain=False)}")
                 st.success("Querry results processed!")
 except Exception as e:
+    appLogger.exception(e)
     import traceback
     st.error(f"An error occurred: {traceback.format_exc(chain=False)}")
 

@@ -1,0 +1,464 @@
+2023-10-20 16:49:18,514 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike brands starting with a as MS SQL querry.
+
+2023-10-20 16:49:20,687 [INFO ]  response:{
+  "id": "cmpl-8Bhp9XC3GQVsTfijcoXfadKgcSqSG",
+  "object": "text_completion",
+  "created": 1697800759,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nselect * from bikes.stores where stor_name like 'A%';",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 419,
+    "completion_tokens": 17,
+    "total_tokens": 436
+  }
+}
+2023-10-20 16:49:21,700 [ERROR]  (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW)")
+[SQL: select * from bikes.stores where stor_name like 'A%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW)")
+[SQL: select * from bikes.stores where stor_name like 'A%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2023-10-20 16:53:32,732 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike stores starting with a as MS SQL querry.
+
+2023-10-20 16:53:34,459 [INFO ]  response:{
+  "id": "cmpl-8BhtFVVpWqPBHGlPzU9DfyQZuJnbX",
+  "object": "text_completion",
+  "created": 1697801013,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nSELECT * FROM bikes.stores WHERE storename LIKE 'A%'",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 419,
+    "completion_tokens": 15,
+    "total_tokens": 434
+  }
+}
+2023-10-20 16:53:35,431 [ERROR]  (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'storename'. (207) (SQLExecDirectW)")
+[SQL: SELECT * FROM bikes.stores WHERE storename LIKE 'A%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'storename'. (207) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'storename'. (207) (SQLExecDirectW)")
+[SQL: SELECT * FROM bikes.stores WHERE storename LIKE 'A%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2023-10-20 17:01:10,349 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike store_name starting with a as MS SQL querry.
+
+2023-10-20 17:01:12,372 [INFO ]  response:{
+  "id": "cmpl-8Bi0dJdPTwgJiXBcg0hVDhKhtCwkq",
+  "object": "text_completion",
+  "created": 1697801471,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nSELECT stor_name \nFROM bikes.stores \nWHERE stor_name LIKE 'a%'",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 421,
+    "completion_tokens": 25,
+    "total_tokens": 446
+  }
+}
+2023-10-20 17:01:13,342 [ERROR]  (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+[SQL: SELECT stor_name 
+FROM bikes.stores 
+WHERE stor_name LIKE 'a%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+[SQL: SELECT stor_name 
+FROM bikes.stores 
+WHERE stor_name LIKE 'a%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2023-10-20 17:01:52,807 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike store_name starting with a as MS SQL querry.
+
+2023-10-20 17:01:54,673 [INFO ]  response:{
+  "id": "cmpl-8Bi1JEFiyUs6cln2NXBPmSQaAGwSG",
+  "object": "text_completion",
+  "created": 1697801513,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nSELECT stor_name FROM bikes.stores WHERE stor_name LIKE 'A%'",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 421,
+    "completion_tokens": 20,
+    "total_tokens": 441
+  }
+}
+2023-10-20 17:01:55,641 [ERROR]  (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+[SQL: SELECT stor_name FROM bikes.stores WHERE stor_name LIKE 'A%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S22', "[42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid column name 'stor_name'. (207)")
+[SQL: SELECT stor_name FROM bikes.stores WHERE stor_name LIKE 'A%']
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2023-10-20 17:02:08,702 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike stor_name starting with a as MS SQL querry.
+
+2023-10-20 17:02:10,529 [INFO ]  response:{
+  "id": "cmpl-8Bi1ZkhwzKn1zpOeo9UoaUwdMc1fE",
+  "object": "text_completion",
+  "created": 1697801529,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nSELECT stor_name FROM bikes WHERE stor_name LIKE 'a%';",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 422,
+    "completion_tokens": 18,
+    "total_tokens": 440
+  }
+}
+2023-10-20 17:02:11,467 [ERROR]  (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bikes'. (208) (SQLExecDirectW)")
+[SQL: SELECT stor_name FROM bikes WHERE stor_name LIKE 'a%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bikes'. (208) (SQLExecDirectW)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'bikes'. (208) (SQLExecDirectW)")
+[SQL: SELECT stor_name FROM bikes WHERE stor_name LIKE 'a%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2023-10-20 17:04:57,171 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries
+bikes.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.BuildVersion(SystemInformationID,Database Version,VersionDate,ModifiedDate)
+dbo.CASE_X_CUST_V2(cust_id,case_id)
+dbo.discounts(discounttype,stor_id,lowqty,highqty,discount)
+dbo.ErrorLog(ErrorLogID,ErrorTime,UserName,ErrorNumber,ErrorSeverity,ErrorState,ErrorProcedure,ErrorLine,ErrorMessage)
+dbo.for_rollback(col1)
+dbo.jobs(job_id,job_desc,min_lvl,max_lvl)
+dbo.pub_info(pub_id,logo,pr_info)
+dbo.publishers(pub_id,pub_name,city,state,country)
+dbo.stores(stor_id,stor_name,stor_address,city,state,zip)
+dbo.sysdiagrams(name,principal_id,diagram_id,version,definition)
+PUBS.discounts(discounttype,stor_id,lowqty,highqty,discount)
+PUBS.jobs(job_id,job_desc,min_lvl,max_lvl)
+PUBS.pub_info(pub_id,logo,pr_info)
+PUBS.publishers(pub_id,pub_name,city,state,country)
+PUBS.stores(stor_id,stor_name,stor_address,city,state,zip)
+Q. Interpret user_input: list all bike store name starting with a as MS SQL querry.
+
+2023-10-20 17:04:59,045 [INFO ]  response:{
+  "id": "cmpl-8Bi4IkuOJbkFCM4j9o8vOIbtq38GW",
+  "object": "text_completion",
+  "created": 1697801698,
+  "model": "text-davinci-002",
+  "choices": [
+    {
+      "text": "\nUSE bikes;\nSELECT * FROM stores\nWHERE stor_name LIKE 'A%';",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 420,
+    "completion_tokens": 20,
+    "total_tokens": 440
+  }
+}
+2023-10-20 17:04:59,753 [ERROR]  (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]USE statement is not supported to switch between databases. Use a new connection to connect to a different database. (40508) (SQLExecDirectW)')
+[SQL: USE bikes;
+SELECT * FROM stores
+WHERE stor_name LIKE 'A%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]USE statement is not supported to switch between databases. Use a new connection to connect to a different database. (40508) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\Generate_Querry.py", line 62, in <module>
+    df = conn_object.get_results(generated_query)
+  File "C:\workdir\poc\GenAI\GenAIPOC\frontend\util\connectors.py", line 63, in get_results
+    result = pd.read_sql(sql,con=self.engine)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 682, in read_sql
+    return pandas_sql.read_query(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1776, in read_query
+    result = self.execute(sql, params)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\pandas\io\sql.py", line 1599, in execute
+    return self.con.exec_driver_sql(sql, *args)
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1774, in exec_driver_sql
+    ret = self._execute_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\workdir\poc\GenAI\GenAIPOC\myenv\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]USE statement is not supported to switch between databases. Use a new connection to connect to a different database. (40508) (SQLExecDirectW)')
+[SQL: USE bikes;
+SELECT * FROM stores
+WHERE stor_name LIKE 'A%';]
+(Background on this error at: https://sqlalche.me/e/20/f405)

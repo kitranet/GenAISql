@@ -3,6 +3,10 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.schema import CreateTable, MetaData
 import urllib.parse
 import pyodbc
+import logging
+import util.logging as ul
+
+appLogger = logging.getLogger('frontend')
 
 class PostgresqlConnector:
     def __init__(self,hostname,port,username,password,database):
@@ -76,18 +80,32 @@ class MSSqlConnector:
         # meta.reflect(bind=self.engine)
         # for table in meta.sorted_tables:
         #     out_list.append(f"{table}.{table.schema}({table.c})")
-        inspector = inspect(self.engine)
-        out_list = []
-        schemas = inspector.get_schema_names()
-        for schema in schemas:
-            for table_name in inspector.get_table_names(schema=schema):
-                try:
-                    columns = inspector.get_columns(table_name)
-                except Exception as e:
-                    continue
-                out_list.append(f"{schema}.{table_name}({','.join([column['name'] for column in columns])})")
+        # inspector = inspect(self.engine)
+        # out_list = []
+        # schemas = inspector.get_schema_names()
+        # appLogger.info(schemas)
+        # for schema in schemas:
+        #     tables = inspector.get_table_names(schema=schema)
+        #     appLogger.info(f"{schema}:{tables}")
+        #     for table_name in tables:
+        #         try:
+        #             columns = inspector.get_columns(table_name)
+        #             appLogger.info(f"{table_name}->{columns}")
+        #         except Exception as e:
+        #             appLogger.error(e)
+        #             continue
+        #         out_list.append(f"{schema}.{table_name}({','.join([column['name'] for column in columns])})")
+        out_list = {}
+        output = self.get_results("Select table_schema, table_name, column_name From INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA NOT IN ('sys')")
+        for index, row in output.iterrows():
+            input_key = f"{row['table_schema'].upper()}.{row['table_name'].upper()}"
+            if input_key in out_list.keys():
+                out_list[input_key].append(row['column_name'].lower())
+            else:
+                out_list[input_key] = [row['column_name'].lower()]
         print(out_list)
-        return f'Instruction: Use {self.type} table structure to write querries\n'+'\n'.join(out_list)
+        out_list = '\n'.join([f"{key}({','.join(out_list[key])})" for key in out_list.keys()])
+        return f'Instruction: Use {self.type} table structure to write querries\n{out_list}\n'
     def __del__(self):
         self.engine.dispose()
 

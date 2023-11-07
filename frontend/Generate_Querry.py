@@ -14,11 +14,11 @@ st.session_state.update(st.session_state)
 # Configure OpenAI
 openai.api_type = "azure"
 openai.api_base = "https://generativetesing12.openai.azure.com/"
-openai.api_version = "2022-12-01"
+openai.api_version = "2023-09-15-preview"
 
 st.set_page_config(page_title="SQL Query Generator", page_icon="nttdata.png", layout="centered", initial_sidebar_state="collapsed", menu_items=None)
 if 'profiles' not in st.session_state:
-    st.session_state['profiles'] = ['Postgresql','MS Access']
+    st.session_state['profiles'] = ['Demo - querry generation only']# ['Postgresql','MS Access']
 for profile in st.session_state['profiles']:
     if profile not in st.session_state:
         st.session_state[profile] = None
@@ -42,8 +42,8 @@ try:
                 engine="maltext",
                 prompt=sqlquery_prompt,
                 temperature=1,
-                max_tokens=350,
-                top_p=1,
+                max_tokens=300,
+                top_p=0.5,
                 frequency_penalty=0,
                 presence_penalty=0,
                 best_of=1,

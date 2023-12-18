@@ -18,7 +18,8 @@ class PostgresqlConnector:
         self.database = database
         self.conn_string = f'postgresql+psycopg2://{self.username}:{self.password}@{self.hostname}:{self.port}/{self.database}'
         self.engine = create_engine(self.conn_string)
-        self.metadata = self.get_metadata()
+        self.metadata = None
+        self.selected_metadata_key = None
     def get_results(self,sql):
         result = pd.read_sql(sql,con=self.engine)
         return result
@@ -30,24 +31,32 @@ class PostgresqlConnector:
             for table_name in inspector.get_table_names(schema=schema):
                 out_tab.append(schema+'.'+table_name)
         return out_tab
-    def get_metadata(self):
+    def extract_metadata(self):
         # out_list = []
         # meta = MetaData()
         # meta.reflect(bind=self.engine)
         # for table in meta.sorted_tables:
         #     out_list.append(f"{table}.{table.schema}({table.c})")
         inspector = inspect(self.engine)
-        out_list = []
+        out_list = {}
         schemas = inspector.get_schema_names()
         for schema in schemas:
+            self.selected_metadata_key = schema
+            out_list [f"{schema}"] = {}
             for table_name in inspector.get_table_names(schema=schema):
                 try:
                     columns = inspector.get_columns(table_name)
                 except Exception as e:
                     continue
-                out_list.append(f"{schema}.{table_name}({','.join([column['name'] for column in columns])})")
+                out_list [f"{schema}"][f"{schema}.{table_name}"] = [column['name'] for column in columns]
+                # out_list.append(f"{schema}.{table_name}({','.join([column['name'] for column in columns])})")
         print(out_list)
-        return f'Instruction: Use {self.type} table structure to write querries\n'+'\n'.join(out_list)
+        self.metadata = out_list
+        # return f'Instruction: Use {self.type} table structure to write querries\n'+'\n'.join(out_list)
+    def get_metadata(self):
+        selected_metadata = self.metadata[self.selected_metadata_key]
+        
+
     def __del__(self):
         self.engine.dispose()
 

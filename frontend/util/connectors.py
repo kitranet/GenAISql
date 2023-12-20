@@ -94,7 +94,7 @@ class MSSqlConnector:
         if not self.metadata:
             raise Exception(f"metadata does not exist for: {self.name}")
         out_list = '\n'.join([f"{key}({','.join(self.metadata[key])})" for key in self.selected_entities])
-        return f'Instruction: Use {self.type} table structure to write querries. Only these tables are present in the databse.\\n{out_list}\n'
+        return f'Instruction: Use {self.type} table structure to write querries. Only these tables are present in the database.\n{out_list}\n'
     def get_metadata(self):
         if not self.metadata:
             raise Exception(f"metadata does not exist for: {self.name}")

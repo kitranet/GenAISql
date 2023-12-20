@@ -29,7 +29,7 @@ try:
         elif db_type == "Oracle":
             st.error("DB connector doesnt exist")
         elif db_type == "MS SQL Active Directory":
-            with st.status("Creating DB Profile..."):
+            with st.status("Creating DB Profile...", expanded=True):
                 st.write("Connecting to DB...")
                 st.session_state[name] = MSSqlConnector(hostname,port,username,password,database,True,name)
                 st.write("Extracting table structure information...")

@@ -4,8 +4,7 @@ import openai
 import pandas as pd
 import time
 import pyodbc
-# from util import PostgresqlConnector, MSAccessConnector
-from util.connectors import PostgresqlConnector, MSAccessConnector
+from util.connectors import  MSAccessConnector
 from util.prompt import create_sql_querry_prompt
 import util.logging as ul
 import logging
@@ -16,9 +15,9 @@ openai.api_type = "azure"
 openai.api_base = "https://generativetesing12.openai.azure.com/"
 openai.api_version = "2023-09-15-preview"
 
-st.set_page_config(page_title="SQL Query Generator", page_icon="nttdata.png", layout="centered", initial_sidebar_state="collapsed", menu_items=None)
+st.set_page_config(page_title="SQL Query Generator", page_icon="frontend/nttdata.png", layout="centered", initial_sidebar_state="collapsed", menu_items=None)
 if 'profiles' not in st.session_state:
-    st.session_state['profiles'] = ['Demo - querry generation only']# ['Postgresql','MS Access']
+    st.session_state['profiles'] = []# ['Postgresql','MS Access']
 for profile in st.session_state['profiles']:
     if profile not in st.session_state:
         st.session_state[profile] = None
@@ -33,20 +32,20 @@ try:
     if user_input and st.button("Generate SQL Query"):
         sqlquery_prompt = create_sql_querry_prompt(st.session_state['selected_profile'],user_input)
         appLogger.info(f'sqlquery_prompt:{sqlquery_prompt}')
-        if 'openai_key' not in st.session_state:
-            st.error("OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar")
-            appLogger.error("OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar")
+        if 'openai_config' not in st.session_state:
+            st.error("OpenAPI configuration not found please configure it by going to the OpenAI Configuration page from the sidebar")
+            appLogger.error("OpenAPI configuration not found please configure it by going to the OpenAI Configuration page from the sidebar")
         else:
-            openai.api_key=st.session_state.openai_key
+            openai.api_key=st.session_state.openai_config.api_key
             response = openai.Completion.create(
                 engine="maltext",
                 prompt=sqlquery_prompt,
-                temperature=1,
-                max_tokens=300,
-                top_p=0.5,
-                frequency_penalty=0,
-                presence_penalty=0,
-                best_of=1,
+                temperature=float(st.session_state.openai_config.temperature),
+                max_tokens=st.session_state.openai_config.max_tokens,
+                top_p=st.session_state.openai_config.top_p,
+                frequency_penalty=st.session_state.openai_config.frequency_penalty,
+                presence_penalty=st.session_state.openai_config.presence_penalty,
+                best_of=st.session_state.openai_config.best_of,
                 stop=None
             )
             

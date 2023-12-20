@@ -3611,3 +3611,245 @@ Q. Interpret user_input: all bike  shops start with s as a single MS SQL querry.
     "total_tokens": 2514
   }
 }
+2023-12-21 01:31:11,808 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries. Only these tables are present in the databse.\nBIKES.BRANDS(brand_id,brand_name)
+BIKES.CATEGORIES(category_id,category_name)
+BIKES.CUSTOMERS(city,customer_id,email,first_name,last_name,phone,state,street,zip_code)
+BIKES.ORDER_ITEMS(discount,item_id,list_price,order_id,product_id,quantity)
+BIKES.ORDERS(customer_id,order_date,order_id,order_status,required_date,shipped_date,staff_id,store_id)
+BIKES.PRODUCTS(brand_id,category_id,list_price,model_year,product_id,product_name)
+BIKES.STAFFS(active,email,first_name,last_name,manager_id,phone,staff_id,store_id)
+BIKES.STOCKS(product_id,quantity,store_id)
+BIKES.STORES(city,email,phone,state,store_id,store_name,street,zip_code)
+
+Task: Interpret user_input: give me total sales as a single MS SQL querry.
+
+2023-12-21 01:31:11,808 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries. Only these tables are present in the databse.\nBIKES.BRANDS(brand_id,brand_name)
+BIKES.CATEGORIES(category_id,category_name)
+BIKES.CUSTOMERS(city,customer_id,email,first_name,last_name,phone,state,street,zip_code)
+BIKES.ORDER_ITEMS(discount,item_id,list_price,order_id,product_id,quantity)
+BIKES.ORDERS(customer_id,order_date,order_id,order_status,required_date,shipped_date,staff_id,store_id)
+BIKES.PRODUCTS(brand_id,category_id,list_price,model_year,product_id,product_name)
+BIKES.STAFFS(active,email,first_name,last_name,manager_id,phone,staff_id,store_id)
+BIKES.STOCKS(product_id,quantity,store_id)
+BIKES.STORES(city,email,phone,state,store_id,store_name,street,zip_code)
+
+Task: Interpret user_input: give me total sales as a single MS SQL querry.
+
+2023-12-21 01:31:11,813 [ERROR]  OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar
+2023-12-21 01:31:11,813 [ERROR]  OpenAPI key not configured please configure it by going to the OpenAI Configuration page from the sidebar
+2023-12-21 01:33:04,301 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries. Only these tables are present in the databse.\nBIKES.BRANDS(brand_id,brand_name)
+BIKES.CATEGORIES(category_id,category_name)
+BIKES.CUSTOMERS(city,customer_id,email,first_name,last_name,phone,state,street,zip_code)
+BIKES.ORDER_ITEMS(discount,item_id,list_price,order_id,product_id,quantity)
+BIKES.ORDERS(customer_id,order_date,order_id,order_status,required_date,shipped_date,staff_id,store_id)
+BIKES.PRODUCTS(brand_id,category_id,list_price,model_year,product_id,product_name)
+BIKES.STAFFS(active,email,first_name,last_name,manager_id,phone,staff_id,store_id)
+BIKES.STOCKS(product_id,quantity,store_id)
+BIKES.STORES(city,email,phone,state,store_id,store_name,street,zip_code)
+
+Task: Interpret user_input: give me total sales as a single MS SQL querry.
+
+2023-12-21 01:33:04,301 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries. Only these tables are present in the databse.\nBIKES.BRANDS(brand_id,brand_name)
+BIKES.CATEGORIES(category_id,category_name)
+BIKES.CUSTOMERS(city,customer_id,email,first_name,last_name,phone,state,street,zip_code)
+BIKES.ORDER_ITEMS(discount,item_id,list_price,order_id,product_id,quantity)
+BIKES.ORDERS(customer_id,order_date,order_id,order_status,required_date,shipped_date,staff_id,store_id)
+BIKES.PRODUCTS(brand_id,category_id,list_price,model_year,product_id,product_name)
+BIKES.STAFFS(active,email,first_name,last_name,manager_id,phone,staff_id,store_id)
+BIKES.STOCKS(product_id,quantity,store_id)
+BIKES.STORES(city,email,phone,state,store_id,store_name,street,zip_code)
+
+Task: Interpret user_input: give me total sales as a single MS SQL querry.
+
+2023-12-21 01:33:04,301 [INFO ]  sqlquery_prompt:Instruction: Use MS SQL table structure to write querries. Only these tables are present in the databse.\nBIKES.BRANDS(brand_id,brand_name)
+BIKES.CATEGORIES(category_id,category_name)
+BIKES.CUSTOMERS(city,customer_id,email,first_name,last_name,phone,state,street,zip_code)
+BIKES.ORDER_ITEMS(discount,item_id,list_price,order_id,product_id,quantity)
+BIKES.ORDERS(customer_id,order_date,order_id,order_status,required_date,shipped_date,staff_id,store_id)
+BIKES.PRODUCTS(brand_id,category_id,list_price,model_year,product_id,product_name)
+BIKES.STAFFS(active,email,first_name,last_name,manager_id,phone,staff_id,store_id)
+BIKES.STOCKS(product_id,quantity,store_id)
+BIKES.STORES(city,email,phone,state,store_id,store_name,street,zip_code)
+
+Task: Interpret user_input: give me total sales as a single MS SQL querry.
+
+2023-12-21 01:33:06,617 [INFO ]  response:{
+  "id": "cmpl-8Xx4fZkF0euADnGaeD3MXARh7VDgD",
+  "object": "text_completion",
+  "created": 1703102597,
+  "model": "text-davinci-002",
+  "prompt_filter_results": [
+    {
+      "prompt_index": 0,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "choices": [
+    {
+      "text": "\nSELECT SUM(list_price * quantity) AS \"Total Sales\"\nFROM BIKES.ORDER_ITEMS",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 315,
+    "completion_tokens": 27,
+    "total_tokens": 342
+  }
+}
+2023-12-21 01:33:06,617 [INFO ]  response:{
+  "id": "cmpl-8Xx4fZkF0euADnGaeD3MXARh7VDgD",
+  "object": "text_completion",
+  "created": 1703102597,
+  "model": "text-davinci-002",
+  "prompt_filter_results": [
+    {
+      "prompt_index": 0,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "choices": [
+    {
+      "text": "\nSELECT SUM(list_price * quantity) AS \"Total Sales\"\nFROM BIKES.ORDER_ITEMS",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 315,
+    "completion_tokens": 27,
+    "total_tokens": 342
+  }
+}
+2023-12-21 01:33:06,617 [INFO ]  response:{
+  "id": "cmpl-8Xx4fZkF0euADnGaeD3MXARh7VDgD",
+  "object": "text_completion",
+  "created": 1703102597,
+  "model": "text-davinci-002",
+  "prompt_filter_results": [
+    {
+      "prompt_index": 0,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "choices": [
+    {
+      "text": "\nSELECT SUM(list_price * quantity) AS \"Total Sales\"\nFROM BIKES.ORDER_ITEMS",
+      "index": 0,
+      "finish_reason": "stop",
+      "logprobs": null,
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 315,
+    "completion_tokens": 27,
+    "total_tokens": 342
+  }
+}

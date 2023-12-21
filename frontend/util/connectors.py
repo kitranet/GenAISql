@@ -4,9 +4,9 @@ from sqlalchemy.schema import CreateTable, MetaData
 import urllib.parse
 import pyodbc
 import logging
-import util.logging as ul
+# import util.logging as ul
 
-appLogger = logging.getLogger('frontend')
+# appLogger = logging.getLogger('frontend')
 
 # class PostgresqlConnector:
 #     def __init__(self,hostname,port,username,password,database):
